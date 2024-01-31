@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class UserController(
-    private val userService: UserService,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val userService: UserService, private val jwtTokenProvider: JwtTokenProvider
 ) {
 
     @PostMapping("/register")

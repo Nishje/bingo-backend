@@ -4,6 +4,8 @@ import com.example.bingobackend.factroy.UserFactory
 import com.example.bingobackend.service.model.UserModel
 import com.example.bingobackend.controller.dto.UserDTO
 import com.example.bingobackend.data.UserRepository
+import com.example.bingobackend.util.exception.InvalidCredentialsException
+import com.example.bingobackend.util.exception.NotFoundException
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.util.UUID
@@ -21,10 +23,10 @@ class UserService(
     }
 
     fun login(user: UserDTO): UUID {
-        if (!userRepository.existsByUserName(user.userName)) throw RuntimeException()
+        if (!userRepository.existsByUserName(user.userName)) throw NotFoundException("User")
         val userModel = getUser(user.userName)
         if (passwordEncoder.verify(user.password, userModel.password)) return userModel.id
-        else throw RuntimeException()
+        else throw InvalidCredentialsException()
     }
 
     private fun createUser(user: UserModel): UserModel {
@@ -32,12 +34,7 @@ class UserService(
     }
 
     private fun getUser(userName: String): UserModel {
-        return userRepository.findByUserName(userName)?.let { userFactory.createBusinessModel(it) }
-            .let { it ?: throw RuntimeException() }
-
-    }
-
-    fun getUser(id: UUID): UserDTO {
-        return userFactory.createDTO(userFactory.createBusinessModel(userRepository.getReferenceById(id)))
+        return userFactory.createBusinessModel(
+            userRepository.findByUserName(userName).orElseThrow { NotFoundException("User") })
     }
 }

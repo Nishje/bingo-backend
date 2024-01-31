@@ -5,8 +5,10 @@ import com.example.bingobackend.controller.dto.CardDTO
 import com.example.bingobackend.data.BingoCardRepository
 import com.example.bingobackend.data.BingoCellRepository
 import com.example.bingobackend.data.UserRepository
+import com.example.bingobackend.util.exception.InvalidInputException
 import com.example.bingobackend.util.exception.NotFoundException
 import org.springframework.stereotype.Service
+import java.util.Optional
 import java.util.UUID
 
 @Service
@@ -29,20 +31,26 @@ class CardService(
     }
 
     fun getCardIdsByUser(userId: UUID): Collection<UUID> {
-        return userRepository.getReferenceById(userId).cards.map { it.cardId }
+        return Optional.of(userRepository.getReferenceById(userId).cards.map { it.cardId })
+            .orElseThrow { NotFoundException("User") }
     }
 
     fun createCard(cardDTO: CardDTO, userId: UUID): UUID {
         val bingoCardAndCellsPair = cardFactory.createEntityModel(cardFactory.createBusinessModel(cardDTO))
         val newCard = bingoCardRepository.save(bingoCardAndCellsPair.first)
         val newCells = bingoCardAndCellsPair.second.map { bingoCellRepository.save(it) }
-        val user = userRepository.findById(userId).orElseThrow()
+        val user = userRepository.findById(userId).orElseThrow { NotFoundException("User") }
         user.cards.add(newCard)
         userRepository.save(user)
         return newCard.cardId
     }
 
     fun updateCard(cardDTO: CardDTO) {
-        cardFactory.createEntityModel(cardFactory.createBusinessModel(cardDTO)).second.map { bingoCellRepository.save(it) }
+        if (bingoCardRepository.existsById(cardDTO.id ?: throw InvalidInputException()))
+            cardFactory.createEntityModel(cardFactory.createBusinessModel(cardDTO)).second.map {
+                bingoCellRepository.save(
+                    it
+                )
+            }
     }
 }

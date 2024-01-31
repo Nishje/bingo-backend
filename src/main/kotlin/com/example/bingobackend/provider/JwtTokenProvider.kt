@@ -12,8 +12,7 @@ import java.util.*
 
 @Component
 class JwtTokenProvider(
-    @Value("\${app.jwtSecret}")
-    private val jwtSecret: String,
+    @Value("\${app.jwtSecret}") private val jwtSecret: String,
 ) {
 
     fun generateToken(id: UUID): String {
@@ -23,13 +22,9 @@ class JwtTokenProvider(
         val signingKey = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
 //        val signingKey = Keys.secretKeyFor(SignatureAlgorithm.HS512)
 
-        return Jwts.builder()
-            .setIssuer(id.toString())
-            .setIssuedAt(now)
-            .setExpiration(expiryDate)
+        return Jwts.builder().setIssuer(id.toString()).setIssuedAt(now).setExpiration(expiryDate)
 //            .signWith(signingKey)
-            .signWith(signingKey, SignatureAlgorithm.HS512)
-            .compact()
+            .signWith(signingKey, SignatureAlgorithm.HS512).compact()
     }
 
     fun validateToken(token: String): Boolean {
@@ -37,11 +32,14 @@ class JwtTokenProvider(
     }
 
     fun extractId(token: String): UUID {
-        return UUID.fromString(Jwts.parserBuilder().setSigningKey(jwtSecret.toByteArray()).build().parseClaimsJws(token).body.issuer)
+        return UUID.fromString(
+            Jwts.parserBuilder().setSigningKey(jwtSecret.toByteArray()).build().parseClaimsJws(token).body.issuer
+        )
     }
 
     private fun isTokenExpired(token: String): Boolean {
-        val expiration = Jwts.parserBuilder().setSigningKey(jwtSecret.toByteArray()).build().parseClaimsJws(token).body.expiration
+        val expiration =
+            Jwts.parserBuilder().setSigningKey(jwtSecret.toByteArray()).build().parseClaimsJws(token).body.expiration
         return expiration.before(Date())
     }
 

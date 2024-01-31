@@ -33,8 +33,7 @@ class SecurityConfig {
 ////            .oauth2ResourceServer { it.jwt { } }
 //        val jwtTokenProvider = JwtTokenProvider("secret")
 //        httpSecurity.with(JwtConfig(jwtTokenProvider)) { }
-        return httpSecurity
-            .build()
+        return httpSecurity.build()
     }
 
 //    @Bean

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class CellFactory {
-
     fun createDTO(cellModel: BingoCellModel): CellDTO {
         return CellDTO(cellModel.content, cellModel.isChecked)
     }
+
     fun createBusinessModel(dto: CellDTO, index: Int): BingoCellModel {
         return BingoCellModel(dto.content, dto.isChecked, index)
     }

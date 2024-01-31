@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface BingoCardRepository : JpaRepository<BingoCard, UUID> {
-
-}
+interface BingoCardRepository : JpaRepository<BingoCard, UUID> {}

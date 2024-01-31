@@ -121,41 +121,31 @@ class CardFactory(
             when (bingoCell.bingoCellId.letteredColumn) {
                 LetteredColumn.B -> bCells.add(
                     BingoCellModel(
-                        bingoCell.content,
-                        bingoCell.isChecked,
-                        bCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bCells.lastIndex + 1
                     )
                 )
 
                 LetteredColumn.I -> iCells.add(
                     BingoCellModel(
-                        bingoCell.content,
-                        bingoCell.isChecked,
-                        iCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, iCells.lastIndex + 1
                     )
                 )
 
                 LetteredColumn.N -> nCells.add(
                     BingoCellModel(
-                        bingoCell.content,
-                        bingoCell.isChecked,
-                        nCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, nCells.lastIndex + 1
                     )
                 )
 
                 LetteredColumn.G -> gCells.add(
                     BingoCellModel(
-                        bingoCell.content,
-                        bingoCell.isChecked,
-                        gCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, gCells.lastIndex + 1
                     )
                 )
 
                 LetteredColumn.O -> oCells.add(
                     BingoCellModel(
-                        bingoCell.content,
-                        bingoCell.isChecked,
-                        oCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, oCells.lastIndex + 1
                     )
                 )
             }
@@ -167,37 +157,31 @@ class CardFactory(
     fun createBusinessModel(dto: CardDTO): BingoCardModel {
 
         return BingoCardModel(
-            dto.id ?: UUID.randomUUID(),
-            dto.title,
-            listOf(
+            dto.id ?: UUID.randomUUID(), dto.title, listOf(
                 cellFactory.createBusinessModel(dto.bColumn.cellOne, 1),
                 cellFactory.createBusinessModel(dto.bColumn.cellTwo, 2),
                 cellFactory.createBusinessModel(dto.bColumn.cellThree, 3),
                 cellFactory.createBusinessModel(dto.bColumn.cellFour, 4),
                 cellFactory.createBusinessModel(dto.bColumn.cellFive, 5)
-            ),
-            listOf(
+            ), listOf(
                 cellFactory.createBusinessModel(dto.iColumn.cellOne, 1),
                 cellFactory.createBusinessModel(dto.iColumn.cellTwo, 2),
                 cellFactory.createBusinessModel(dto.iColumn.cellThree, 3),
                 cellFactory.createBusinessModel(dto.iColumn.cellFour, 4),
                 cellFactory.createBusinessModel(dto.iColumn.cellFive, 5)
-            ),
-            listOf(
+            ), listOf(
                 cellFactory.createBusinessModel(dto.nColumn.cellOne, 1),
                 cellFactory.createBusinessModel(dto.nColumn.cellTwo, 2),
                 cellFactory.createBusinessModel(dto.nColumn.cellThree, 3),
                 cellFactory.createBusinessModel(dto.nColumn.cellFour, 4),
                 cellFactory.createBusinessModel(dto.nColumn.cellFive, 5)
-            ),
-            listOf(
+            ), listOf(
                 cellFactory.createBusinessModel(dto.gColumn.cellOne, 1),
                 cellFactory.createBusinessModel(dto.gColumn.cellTwo, 2),
                 cellFactory.createBusinessModel(dto.gColumn.cellThree, 3),
                 cellFactory.createBusinessModel(dto.gColumn.cellFour, 4),
                 cellFactory.createBusinessModel(dto.gColumn.cellFive, 5)
-            ),
-            listOf(
+            ), listOf(
                 cellFactory.createBusinessModel(dto.oColumn.cellOne, 1),
                 cellFactory.createBusinessModel(dto.oColumn.cellTwo, 2),
                 cellFactory.createBusinessModel(dto.oColumn.cellThree, 3),

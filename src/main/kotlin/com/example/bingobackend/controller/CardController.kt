@@ -10,7 +10,7 @@ import java.util.UUID
 @RestController
 @RequestMapping("/cards")
 class CardController(private val cardService: CardService) {
-//    @GetMapping
+    //    @GetMapping
 //    fun getCards(): ResponseEntity<Map<String, Collection<CardDTO>>> {
 //        return ResponseEntity.ok(mapOf(Pair("cards", cardService.getCards())))
 //    }
@@ -26,7 +26,9 @@ class CardController(private val cardService: CardService) {
     }
 
     @PostMapping
-    fun createCard(@RequestBody cardDTO: CardDTO, @AuthenticationPrincipal userId: UUID): ResponseEntity<Map<String, UUID>> {
+    fun createCard(
+        @RequestBody cardDTO: CardDTO, @AuthenticationPrincipal userId: UUID
+    ): ResponseEntity<Map<String, UUID>> {
         val createdCardId = cardService.createCard(cardDTO, userId)
         return ResponseEntity.ok(mapOf(Pair("cardId", createdCardId)))
     }

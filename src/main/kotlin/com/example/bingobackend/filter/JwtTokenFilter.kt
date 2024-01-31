@@ -14,9 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 class JwtTokenFilter(private val jwtTokenProvider: JwtTokenProvider) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
-        request: HttpServletRequest,
-        response: HttpServletResponse,
-        filterChain: FilterChain
+        request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain
     ) {
         if (request.cookies != null) {
             val token = jwtTokenProvider.resolveToken(request)
