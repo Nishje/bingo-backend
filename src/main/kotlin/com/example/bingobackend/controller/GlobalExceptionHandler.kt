@@ -4,6 +4,7 @@ import com.example.bingobackend.util.ResponseType
 import jakarta.validation.ConstraintViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -19,6 +20,12 @@ class GlobalExceptionHandler {
             else "Validation error"
         return ResponseEntity((ResponseType.Error(responseMessage)), HttpStatus.BAD_REQUEST)
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun handleValidationException(exception: HttpMessageNotReadableException): ResponseEntity<ResponseType.Error> {
+        return ResponseEntity((ResponseType.Error("Couldn't parse input")), HttpStatus.BAD_REQUEST)
+    }
+
 
     @ExceptionHandler(ConstraintViolationException::class)
     fun handleValidationException(exception: ConstraintViolationException): ResponseEntity<ResponseType.Error> {
