@@ -1,19 +1,11 @@
 package com.example.bingobackend.config
 
-import com.example.bingobackend.provider.JwtTokenProvider
-import com.nimbusds.jose.jwk.JWKSet
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer
-import org.springframework.security.oauth2.jwt.JwtDecoder
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder
 import org.springframework.security.web.SecurityFilterChain
-import java.net.URI
-import java.security.interfaces.RSAPublicKey
-import java.time.Duration
 
 @Configuration
 @EnableWebSecurity

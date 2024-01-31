@@ -10,14 +10,6 @@ import java.util.UUID
 @Component
 class UserFactory {
 
-    fun createDTO(user: UserModel): UserDTO {
-        return UserDTO(user.userName, user.password)
-    }
-
-    fun createBusinessModel(dto: UserDTO): UserModel {
-        return UserModel(UUID.randomUUID(), dto.userName, dto.password)
-    }
-
     fun createBusinessModel(dto: UserDTO, encodedPassword: String): UserModel {
         return UserModel(UUID.randomUUID(), dto.userName, encodedPassword)
     }

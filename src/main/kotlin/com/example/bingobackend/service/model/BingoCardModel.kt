@@ -10,6 +10,4 @@ class BingoCardModel(
     val n: Iterable<BingoCellModel>,
     val g: Iterable<BingoCellModel>,
     val o: Iterable<BingoCellModel>
-) {
-
-}
+)

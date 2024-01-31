@@ -121,31 +121,31 @@ class CardFactory(
             when (bingoCell.bingoCellId.letteredColumn) {
                 LetteredColumn.B -> bCells.add(
                     BingoCellModel(
-                        bingoCell.content, bingoCell.isChecked, bCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bingoCell.bingoCellId.cellRow
                     )
                 )
 
                 LetteredColumn.I -> iCells.add(
                     BingoCellModel(
-                        bingoCell.content, bingoCell.isChecked, iCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bingoCell.bingoCellId.cellRow
                     )
                 )
 
                 LetteredColumn.N -> nCells.add(
                     BingoCellModel(
-                        bingoCell.content, bingoCell.isChecked, nCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bingoCell.bingoCellId.cellRow
                     )
                 )
 
                 LetteredColumn.G -> gCells.add(
                     BingoCellModel(
-                        bingoCell.content, bingoCell.isChecked, gCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bingoCell.bingoCellId.cellRow
                     )
                 )
 
                 LetteredColumn.O -> oCells.add(
                     BingoCellModel(
-                        bingoCell.content, bingoCell.isChecked, oCells.lastIndex + 1
+                        bingoCell.content, bingoCell.isChecked, bingoCell.bingoCellId.cellRow
                     )
                 )
             }
@@ -192,7 +192,7 @@ class CardFactory(
     }
 
     fun createEntityModel(businessModel: BingoCardModel): Pair<BingoCard, Collection<BingoCell>> {
-        val card = BingoCard(businessModel.id, businessModel.title, emptyList());
+        val card = BingoCard(businessModel.id, businessModel.title, emptyList())
         val bCells: Collection<BingoCell> = extractCells(card, businessModel.b, LetteredColumn.B)
         val iCells: Collection<BingoCell> = extractCells(card, businessModel.i, LetteredColumn.I)
         val nCells: Collection<BingoCell> = extractCells(card, businessModel.n, LetteredColumn.N)
@@ -206,8 +206,7 @@ class CardFactory(
     private fun extractCells(
         bingoCard: BingoCard, columnModel: Iterable<BingoCellModel>, letteredColumn: LetteredColumn
     ): List<BingoCell> {
-        var i: Int = 0
-        return columnModel.map { BingoCell(BingoCellId(bingoCard, letteredColumn, i++), it.content, it.isChecked) }
+        return columnModel.map { BingoCell(BingoCellId(bingoCard, letteredColumn, it.index), it.content, it.isChecked) }
     }
 
 }

@@ -2,7 +2,6 @@ package com.example.bingobackend.data.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.CascadeType
-import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
