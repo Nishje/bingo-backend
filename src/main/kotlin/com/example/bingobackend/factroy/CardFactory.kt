@@ -158,35 +158,35 @@ class CardFactory(
 
         return BingoCardModel(
             dto.id ?: UUID.randomUUID(), dto.title, listOf(
-                cellFactory.createBusinessModel(dto.bColumn.cellOne, 1),
-                cellFactory.createBusinessModel(dto.bColumn.cellTwo, 2),
-                cellFactory.createBusinessModel(dto.bColumn.cellThree, 3),
-                cellFactory.createBusinessModel(dto.bColumn.cellFour, 4),
-                cellFactory.createBusinessModel(dto.bColumn.cellFive, 5)
+                cellFactory.createBusinessModel(dto.b.cellOne, 1),
+                cellFactory.createBusinessModel(dto.b.cellTwo, 2),
+                cellFactory.createBusinessModel(dto.b.cellThree, 3),
+                cellFactory.createBusinessModel(dto.b.cellFour, 4),
+                cellFactory.createBusinessModel(dto.b.cellFive, 5)
             ), listOf(
-                cellFactory.createBusinessModel(dto.iColumn.cellOne, 1),
-                cellFactory.createBusinessModel(dto.iColumn.cellTwo, 2),
-                cellFactory.createBusinessModel(dto.iColumn.cellThree, 3),
-                cellFactory.createBusinessModel(dto.iColumn.cellFour, 4),
-                cellFactory.createBusinessModel(dto.iColumn.cellFive, 5)
+                cellFactory.createBusinessModel(dto.i.cellOne, 1),
+                cellFactory.createBusinessModel(dto.i.cellTwo, 2),
+                cellFactory.createBusinessModel(dto.i.cellThree, 3),
+                cellFactory.createBusinessModel(dto.i.cellFour, 4),
+                cellFactory.createBusinessModel(dto.i.cellFive, 5)
             ), listOf(
-                cellFactory.createBusinessModel(dto.nColumn.cellOne, 1),
-                cellFactory.createBusinessModel(dto.nColumn.cellTwo, 2),
-                cellFactory.createBusinessModel(dto.nColumn.cellThree, 3),
-                cellFactory.createBusinessModel(dto.nColumn.cellFour, 4),
-                cellFactory.createBusinessModel(dto.nColumn.cellFive, 5)
+                cellFactory.createBusinessModel(dto.n.cellOne, 1),
+                cellFactory.createBusinessModel(dto.n.cellTwo, 2),
+                cellFactory.createBusinessModel(dto.n.cellThree, 3),
+                cellFactory.createBusinessModel(dto.n.cellFour, 4),
+                cellFactory.createBusinessModel(dto.n.cellFive, 5)
             ), listOf(
-                cellFactory.createBusinessModel(dto.gColumn.cellOne, 1),
-                cellFactory.createBusinessModel(dto.gColumn.cellTwo, 2),
-                cellFactory.createBusinessModel(dto.gColumn.cellThree, 3),
-                cellFactory.createBusinessModel(dto.gColumn.cellFour, 4),
-                cellFactory.createBusinessModel(dto.gColumn.cellFive, 5)
+                cellFactory.createBusinessModel(dto.g.cellOne, 1),
+                cellFactory.createBusinessModel(dto.g.cellTwo, 2),
+                cellFactory.createBusinessModel(dto.g.cellThree, 3),
+                cellFactory.createBusinessModel(dto.g.cellFour, 4),
+                cellFactory.createBusinessModel(dto.g.cellFive, 5)
             ), listOf(
-                cellFactory.createBusinessModel(dto.oColumn.cellOne, 1),
-                cellFactory.createBusinessModel(dto.oColumn.cellTwo, 2),
-                cellFactory.createBusinessModel(dto.oColumn.cellThree, 3),
-                cellFactory.createBusinessModel(dto.oColumn.cellFour, 4),
-                cellFactory.createBusinessModel(dto.oColumn.cellFive, 5)
+                cellFactory.createBusinessModel(dto.o.cellOne, 1),
+                cellFactory.createBusinessModel(dto.o.cellTwo, 2),
+                cellFactory.createBusinessModel(dto.o.cellThree, 3),
+                cellFactory.createBusinessModel(dto.o.cellFour, 4),
+                cellFactory.createBusinessModel(dto.o.cellFive, 5)
             )
         )
     }
